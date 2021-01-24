@@ -2,24 +2,25 @@ import discord
 import os
 import requests
 import json
+from discord.ext import commands
 from riotwatcher import LolWatcher, ApiError
 
 client = discord.Client()
 
-def get_quote():
-    response = requests.get()
-    json_data = json.loads
+bot = commands.Bot(command_prefix='!')
 
-@client.event
+
+@bot.event
 async def on_ready():
-    print('We have logged in as {0.user}'.format(client))
+    print('We have logged in as {0.user}'.format(bot))
 
-@client.event
-async def on_message(message):
-    if message.author == client.user:
+
+@bot.command()
+async def add(ctx):
+    if ctx.author == bot.user:
         return
 
-    if message.content.startswith('!add'):
-        await message.channel.send('Hello')
+    await ctx.channel.send('Hello')
 
-client.run(os.getenv('TOKEN'))
+
+bot.run(os.getenv('TOKEN'))

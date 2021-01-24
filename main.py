@@ -7,4 +7,4 @@ bot = discord.Client()
 async def on_ready():
     print(f'Logged in as {bot.user}')
 
-bot.run(os.env.get['TOKEN'])
+bot.run(os.getenv('TOKEN'))
